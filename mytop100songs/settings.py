@@ -44,6 +44,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'connect_spotify.apps.ConnectSpotifyConfig',
+    'show_spotify_songs.apps.ShowSpotifySongsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

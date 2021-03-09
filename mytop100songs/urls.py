@@ -21,5 +21,6 @@ from . import views
 urlpatterns = [
     path('', views.index, name="index"),
     path('admin/', admin.site.urls),
-    path('spotify/', include('connect_spotify.urls'))
+    path('spotify/', include('connect_spotify.urls')),
+    path('app/', include('show_spotify_songs.urls'))
 ]

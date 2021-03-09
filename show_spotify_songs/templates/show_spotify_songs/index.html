@@ -1,0 +1,12 @@
+<div>
+    <h1>show songs</h1>
+    <p>{{message}}</p>
+    {% if names %}
+    <ul>
+    {% for name in names %}
+        <li>{{name}}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    <p>{{token}}</p>
+</div>
