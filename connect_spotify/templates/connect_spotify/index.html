@@ -1,0 +1,41 @@
+<div>
+    <h1>My 100 Top Songs</h1>
+    <div>
+        <a href="{% url 'login' %}">login</a>
+    </div>
+    {% if access_token and refresh_token %}
+        <ul>
+           <li>access_token: {{access_token}}</li> 
+           <li>refresh_token: {{refresh_token}}</li> 
+        </ul>
+
+    <div>
+	    <label>https://api.spotify.com/v1/me/</label>
+	    <input type="text" id="url">
+	    <br><p>Querys en json:</p>
+	    <textarea id="json-query" name="json-text" rows="4" cols="50">{
+
+		    }</textarea>
+	   </div>
+
+    <script>
+        function fetch_something(access_token){
+	    let qObj = JSON.parse(document.getElementById("json-query").value)
+	    let qStr = ""
+		if(Object.values(qObj).length > 0){
+			qStr = `?${new URLSearchParams(qObj).toString()}`
+		}
+	    console.log(qStr)
+	    let inputURL = document.getElementById("url").value
+		fetch(`https://api.spotify.com/v1/me/${inputURL}${qStr}`, { 'headers': {'Authorization': 'Bearer ' + access_token}}).then(res => res.json()).then(data => {
+                console.log(data);
+                el = document.getElementById("res")
+                el.innerHTML = JSON.stringify(data, null, 4)
+            })
+        };
+   </script>
+   <button onclick=fetch_something({{access_token}})>click me</button>
+   <pre id="res"></pre>
+    {% endif %}
+
+</div>
